@@ -1,0 +1,59 @@
+{
+  "name": "nuxt-fonty",
+  "version": "1.0.0",
+  "description": "A tiny and flexible font loader for Nuxt.",
+  "author": "Ivo Dolenc",
+  "license": "MIT",
+  "repository": "ivodolenc/nuxt-fonty",
+  "homepage": "https://github.com/ivodolenc/nuxt-fonty",
+  "funding": "https://github.com/sponsors/ivodolenc",
+  "type": "module",
+  "main": "./dist/module.mjs",
+  "types": "./dist/types.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "types": "./dist/types.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "!dist/module.cjs"
+  ],
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "nuxt-composables",
+    "nuxt-font-composables",
+    "nuxt-font-loader",
+    "nuxt-fonty",
+    "nuxt-font",
+    "fonty"
+  ],
+  "scripts": {
+    "dev": "nuxt dev playground",
+    "build:play": "nuxt build playground",
+    "generate:play": "nuxt generate playground",
+    "preview:play": "nuxt preview playground",
+    "build:module": "nuxt-module-build",
+    "prepublishOnly": "npm run build:module",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "fix": "eslint --fix ."
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^0.2.1",
+    "@types/node": "^18.13.0",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
+    "nuxt": "^3.2.0",
+    "prettier": "^2.8.4",
+    "typescript": "^4.9.5"
+  },
+  "eslintConfig": {
+    "extends": "./.config/eslint.config.cjs"
+  },
+  "prettier": "./.config/prettier.config.cjs"
+}
