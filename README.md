@@ -1,65 +1,32 @@
-<h1 align="center">Nuxt Fonty</h1>
+# Nuxt Font Module
 
-<p align="center">A tiny and flexible font loader for Nuxt.</p>
+Auto-optimized font loader for Nuxt.
 
 ## Features
 
 - Includes automatic optimization
-- Provides a _composable_ font strategy
-- Designed for Nuxt 3+
+- Provides a composable font strategy
+- Follows modern methods and practices
 - TypeScript friendly
 - Super easy to use
-- No dependencies
+- Zero dependencies
+- Ultra lightweight
 
-## Size Info
+## Quick Start
 
-<h6>Zero-dependencies — Tree-shakeable</h6>
-
-<table>
-  <thead>
-    <tr>
-      <th align="left" width="500px">Core</th>
-      <th align="left" width="500px">Size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>module</td>
-      <td><code>~450 B</code> minified</td>
-    </tr>
-  </tbody>
-</table>
-
-<table>
-  <thead>
-    <tr>
-      <th align="left" width="500px">Composable</th>
-      <th align="left" width="500px">Size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>useFont</td>
-      <td><code>~840 B</code> minified</td>
-    </tr>
-  </tbody>
-</table>
-
-## Installation
-
-1. Install `nuxt-fonty` to your project
+1. Install `@hypernym/nuxt-font` to your project
 
 ```sh
-npm i -D nuxt-fonty
+npm i -D @hypernym/nuxt-font
 ```
 
 2. Enable the module in the main config file
 
-```js
+```ts
 // nuxt.config.ts
 
 {
-  modules: ['nuxt-fonty']
+  modules: ['@hypernym/nuxt-font']
 }
 ```
 
@@ -67,32 +34,40 @@ That's it! Start developing your app!
 
 ## Optimization
 
-**Fonty** automatically optimizes all your font sources and improves page loading speed so you don't have to worry about it at all.
+The module automatically optimizes all your font sources and improves page loading speed so you don't have to worry about it at all.
 
-## Strategy
+It is designed with performance, flexibility and privacy in mind.
 
-To simplify, **Nuxt Fonty** is actually a lighter version of [Nuxt Font Loader](https://github.com/ivodolenc/nuxt-font-loader).
+## Module
 
-It's designed with the same API, but only supports _local_ font loading. This results in simplicity and a much smaller final size which is awesome. Another difference is that there are no global settings.
+Fonts are loaded via custom `useFont` composable from the same domain as your deployment.
 
-Fonts are loaded via a custom function from the same domain as your deployment. Using this _font composable_, you can easily load fonts on different pages or layouts with _performance_, _flexibility_ and _privacy_ in mind.
+Using this strategy, you can easily load fonts on different components, pages or layouts.
 
-Also, try to use _variable_ fonts whenever you can to take advantage of their customization and fast loading speed.
+Since it only supports local fonts, the module final size is super tiny.
+
+## Local Fonts
+
+The term **local fonts** refers to fonts that will be hosted with your site as well as other assets, so you have full control over them without involvement of third-party services. This is essential for speed and privacy.
+
+Also, most fonts used on the web today are released under the OFL-1.1 license or some similar open-source code, which includes their download and free use.
+
+<sub>For external font loading, check out <a href="https://github.com/ivodolenc/nuxt-font-loader">nuxt-font-loader</a>.</sub>
 
 ## Usage
 
-Place the previously downloaded fonts in the `public/fonts/` directory and simply import the function where you need it.
+Place the previously downloaded fonts in the `public/` directory.
+
+After that, use the composable exactly where you need it.
 
 ```html
-<!-- app.vue, layout.vue, page.vue ... -->
+<!-- layout.vue | page.vue | component.vue -->
 
 <template>
-  <h1 class="font-aspekta">Nuxt Font Loader</h1>
+  <h1 class="font-aspekta">Nuxt Font Module</h1>
 </template>
 
 <script setup lang="ts">
-  import { useFont } from '#fonty'
-
   useFont([
     {
       src: '/fonts/AspektaVF.woff2',
@@ -104,23 +79,36 @@ Place the previously downloaded fonts in the `public/fonts/` directory and simpl
 </script>
 ```
 
+## Options
+
+Nuxt Font Module is optimized and supports Nuxt 3 with TypeScript. It also improves the development experience with detailed descriptions, examples and code auto-completion.
+
+```ts
+// nuxt.config.ts
+
+{
+  modules: ['@hypernym/nuxt-font'],
+
+  font: {
+    // Module options
+  }
+}
+```
+
 ## useFont
+
+Loads fonts from the same domain as your deployment.
 
 The function accepts an array of objects that specifies local font sources.
 
-Each object is treated as a separate block of rules. See [types](./src/types/index.ts).
+Each object is treated as a separate block of rules.
 
-### preload
+Also, the font composable is available globally after module activation, so there is no need for manual import.
 
-- Type: `boolean`
-- Default: `true`
+```ts
+// Explicit import (optional)
 
-Specifies the _preload_ links.
-
-```js
-{
-  preload: true
-}
+import { useFont } from '#font'
 ```
 
 ### src
@@ -130,10 +118,14 @@ Specifies the _preload_ links.
 
 Specifies path to the font file.
 
-```js
-{
-  src: '/path/to/font.woff2'
-}
+Fonts must be placed within a `public/` directory.
+
+```ts
+useFont([
+  {
+    src: '/fonts/AspektaVF.woff2'
+  }
+])
 ```
 
 ### family
@@ -141,64 +133,98 @@ Specifies path to the font file.
 - Type: `string`
 - Required: `true`
 
-Defines the font family name.
+Specifies the font family name.
 
-```js
-{
-  family: 'Family Name'
-}
+```ts
+useFont([
+  {
+    family: 'Aspekta Variable'
+  }
+])
+```
+
+### preload
+
+- Type: `boolean`
+- Default: `true`
+
+Specifies the `preload` links.
+
+```ts
+useFont([
+  {
+    preload: true
+  }
+])
 ```
 
 ### fallback
 
 - Type: `string[]`
-- Default: `undefined`
+- Default: `['sans-serif']`
 
-Defines the font family fallback.
+Specifies the font family fallback.
 
-```js
-{
-  fallback: ['sans-serif'] // or ['"Arial"', 'Helvetica', 'sans-serif']
+```ts
+useFont([
+  {
+    fallback: ['sans-serif']
+  }
+])
+```
+
+Example above will generate:
+
+```css
+.font-aspekta {
+  font-family: 'Aspekta Variable', sans-serif;
 }
 ```
 
 ### weight
 
 - Type: `string`
-- Default: `400`
+- Default: `'400'`
 
-Defines the font weight.
+Specifies the font weight.
 
-```js
-{
-  weight: '400' // or '100 900' for variable font
-}
-```
-
-### display
-
-- Type: `string`
-- Default: `optional`
-
-Specifies how a font face is displayed.
-
-```js
-{
-  display: 'optional'
-}
+```ts
+useFont([
+  {
+    // variable weight range
+    weight: '100 900'
+  }
+])
 ```
 
 ### style
 
 - Type: `string`
-- Default: `normal`
+- Default: `'normal'`
 
-Defines the font style.
+Specifies the font style.
 
-```js
-{
-  style: 'normal'
-}
+```ts
+useFont([
+  {
+    style: 'italic'
+  }
+])
+```
+
+### display
+
+- Type: `string`
+- Default: `'optional'`
+
+Specifies how a font face is displayed.
+
+```ts
+useFont([
+  {
+    display: 'swap'
+  }
+])
 ```
 
 ### class
@@ -206,26 +232,28 @@ Defines the font style.
 - Type: `string`
 - Default: `undefined`
 
-Defines the global css _class_ for the current source.
+Specifies the global css `class` for the current source.
 
-```js
-{
-  class: 'my-font'
-}
+```ts
+useFont([
+  {
+    class: 'font-aspekta'
+  }
+])
 ```
 
 Example above will generate global css class:
 
 ```css
-.my-font {
-  font-family: 'family-name';
+.font-aspekta {
+  font-family: 'Aspekta Variable', sans-serif;
 }
 ```
 
 So it can be used in templates:
 
 ```html
-<h1 class="my-font">Fonty</h1>
+<h1 class="font-aspekta">Font Loader</h1>
 ```
 
 ### variable
@@ -233,19 +261,21 @@ So it can be used in templates:
 - Type: `string`
 - Default: `undefined`
 
-Defines the global css _variable_ for the current source.
+Specifies the global css `variable` for the current source.
 
-```js
-{
-  variable: 'my-font'
-}
+```ts
+useFont([
+  {
+    variable: 'font-aspekta'
+  }
+])
 ```
 
 Example above will generate global css variable:
 
 ```css
 :root {
-  --my-font: 'family-name';
+  --font-aspekta: 'Aspekta Variable', sans-serif;
 }
 ```
 
@@ -253,7 +283,7 @@ So it can be used in templates:
 
 ```css
 h1 {
-  font-family: var(--my-font);
+  font-family: var(--font-aspekta);
 }
 ```
 
@@ -262,14 +292,16 @@ h1 {
 - Type: `string[]`
 - Default: `undefined`
 
-Defines a specific range of characters to be used from the font.
+Specifies the range of characters to be used from the font.
 
-```js
-{
-  preload: false, // disables the preload link
-  display: 'swap', // or 'fallback', 'auto' ...
-  unicode: ['U+26']
-}
+```ts
+useFont([
+  {
+    preload: false,
+    display: 'swap',
+    unicode: ['U+26']
+  }
+])
 ```
 
 Example above will generate:
@@ -284,32 +316,30 @@ Example above will generate:
 ## autoImport
 
 - Type: `boolean`
-- Default: `false`
+- Default: `true`
 
-Manages the built-in `auto-import` feature.
+Specifies the built-in `auto-import` feature.
 
-If enabled, you can use _font composables_ across your application without explicitly importing them.
+If enabled, font composables are available globally so there is no need for manual import.
 
-```js
+```ts
 // nuxt.config.ts
 
 {
-  fonty: {
+  font: {
     autoImport: true
   }
 }
 ```
 
-## Support
+## Community
 
-This is a free and open source project available to everyone.
-
-If you like it, _star the repo_ to show your support.
+Feel free to use the official [discussions](https://github.com/hypernym-studio/nuxt-font/discussions) for any additional questions.
 
 ## License
 
-Developed in Croatia 🇭🇷
+Developed in 🇭🇷 Croatia
 
-[MIT License](LICENSE)
+Released under the [MIT](LICENSE.txt) license.
 
-© Ivo Dolenc
+© Hypernym Studio

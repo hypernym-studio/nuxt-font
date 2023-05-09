@@ -1,19 +1,32 @@
+import { useHead } from '#imports'
 import type { FontOptions } from '../../types'
-import { useHead } from '#app'
 
 /**
  * Loads fonts from the same domain as your deployment.
  *
+ * The function accepts an array of objects that specifies local font sources.
+ *
+ * Each object is treated as a separate block of rules.
+ *
+ * Also, the font composable is available globally after module activation, so there is no need for manual import.
+ *
  * @example
  *
- * ```js
+ * ```ts
  * useFont([
- *     {
- *       src: '/fonts/AspektaVF.woff2',
- *       family: 'Aspekta Variable',
- *       weight: '100 900'
- *     }
+ *   {
+ *     src: '/fonts/AspektaVF.woff2',
+ *     family: 'Aspekta Variable',
+ *     weight: '100 900'
+ *   }
  * ])
+ * ```
+ *
+ * @example
+ *
+ * ```ts
+ * // Explicit import (optional)
+ * import { useFont } from '#font'
  * ```
  *
  * @since 1.0.0
@@ -26,20 +39,31 @@ export const useFont = (options: FontOptions[]) => {
   let root = ''
 
   for (const option of options) {
-    const defaults = {
+    const defaults: FontOptions = {
       preload: true,
-      weight: 400,
+      weight: '400',
+      fallback: ['sans-serif'],
       display: 'optional',
       style: 'normal',
       ...option
     }
-    const { family, src, preload, class: _class, variable } = defaults
-    const { fallback, weight, style, display, unicode } = defaults
+    const {
+      family,
+      src,
+      preload,
+      class: _class,
+      variable,
+      fallback,
+      weight,
+      style,
+      display,
+      unicode
+    } = defaults
     let [, format] = src.split(/\.(?=[^.]+$)/)
 
     if (preload) {
       if (format === 'ttf') format = 'truetype'
-      else if (format === 'otf') format = 'opentype'
+      if (format === 'otf') format = 'opentype'
 
       if (!links.some((v: { href?: string }) => v.href === src)) {
         links.push({
@@ -68,8 +92,10 @@ export const useFont = (options: FontOptions[]) => {
     if (variable) variables += `--${variable}:"${family}"${fb};`
   }
 
-  if (links.length) useHead({ link: links })
   if (variables) root = `:root{${variables}}`
 
-  return useHead({ style: [{ children: `${fontFace}${classes}${root}` }] })
+  return useHead({
+    link: links.length ? links : undefined,
+    style: [{ children: `${fontFace}${classes}${root}` }]
+  })
 }
