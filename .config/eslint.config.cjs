@@ -25,6 +25,7 @@ module.exports = {
     '.output',
     '.cache',
     '.env',
-    'dist'
+    'dist',
+    'templates'
   ]
 }
