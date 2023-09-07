@@ -9,7 +9,7 @@ Auto-optimized font loader for Nuxt.
 - Follows modern methods and practices
 - TypeScript friendly
 - Super easy to use
-- Zero dependencies
+- No dependencies
 - Ultra lightweight
 
 ## Quick Start
@@ -30,7 +30,7 @@ npm i -D @hypernym/nuxt-font
 }
 ```
 
-That's it! Start developing your app!
+That's it!
 
 ## Optimization
 
@@ -52,7 +52,7 @@ The term **local fonts** refers to fonts that will be hosted with your site as w
 
 Also, most fonts used on the web today are released under the OFL-1.1 license or some similar open-source code, which includes their download and free use.
 
-<sub>For external font loading, check out <a href="https://github.com/ivodolenc/nuxt-font-loader">nuxt-font-loader</a>.</sub>
+For external font loading, check out <a href="https://github.com/ivodolenc/nuxt-font-loader">nuxt-font-loader</a>.
 
 ## Usage
 
@@ -73,8 +73,8 @@ After that, use the composable exactly where you need it.
       src: '/fonts/AspektaVF.woff2',
       family: 'Aspekta Variable',
       weight: '100 900',
-      class: 'font-aspekta'
-    }
+      class: 'font-aspekta',
+    },
   ])
 </script>
 ```
@@ -123,8 +123,8 @@ Fonts must be placed within a `public/` directory.
 ```ts
 useFont([
   {
-    src: '/fonts/AspektaVF.woff2'
-  }
+    src: '/fonts/AspektaVF.woff2',
+  },
 ])
 ```
 
@@ -138,8 +138,8 @@ Specifies the font family name.
 ```ts
 useFont([
   {
-    family: 'Aspekta Variable'
-  }
+    family: 'Aspekta Variable',
+  },
 ])
 ```
 
@@ -153,8 +153,8 @@ Specifies the `preload` links.
 ```ts
 useFont([
   {
-    preload: true
-  }
+    preload: true,
+  },
 ])
 ```
 
@@ -168,8 +168,8 @@ Specifies the font family fallback.
 ```ts
 useFont([
   {
-    fallback: ['sans-serif']
-  }
+    fallback: ['sans-serif'],
+  },
 ])
 ```
 
@@ -192,8 +192,8 @@ Specifies the font weight.
 useFont([
   {
     // variable weight range
-    weight: '100 900'
-  }
+    weight: '100 900',
+  },
 ])
 ```
 
@@ -207,8 +207,8 @@ Specifies the font style.
 ```ts
 useFont([
   {
-    style: 'italic'
-  }
+    style: 'italic',
+  },
 ])
 ```
 
@@ -222,8 +222,8 @@ Specifies how a font face is displayed.
 ```ts
 useFont([
   {
-    display: 'swap'
-  }
+    display: 'swap',
+  },
 ])
 ```
 
@@ -237,8 +237,8 @@ Specifies the global css `class` for the current source.
 ```ts
 useFont([
   {
-    class: 'font-aspekta'
-  }
+    class: 'font-aspekta',
+  },
 ])
 ```
 
@@ -266,8 +266,8 @@ Specifies the global css `variable` for the current source.
 ```ts
 useFont([
   {
-    variable: 'font-aspekta'
-  }
+    variable: 'font-aspekta',
+  },
 ])
 ```
 
@@ -299,8 +299,8 @@ useFont([
   {
     preload: false,
     display: 'swap',
-    unicode: ['U+26']
-  }
+    unicode: ['U+26'],
+  },
 ])
 ```
 
