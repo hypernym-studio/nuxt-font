@@ -1,8 +1,3 @@
-/**
- * Font Options
- *
- * @since 1.0.0
- */
 export interface FontOptions {
   /**
    * Specifies path to the font file.
@@ -177,3 +172,35 @@ export interface FontOptions {
    */
   unicode?: string[]
 }
+
+/**
+ * Loads fonts from the same domain as your deployment.
+ *
+ * The function accepts an array of objects that specifies local font sources.
+ *
+ * Each object is treated as a separate block of rules.
+ *
+ * Also, the font composable is available globally after module activation, so there is no need for manual import.
+ *
+ * @example
+ *
+ * ```ts
+ * useFont([
+ *   {
+ *     src: '/fonts/AspektaVF.woff2',
+ *     family: 'Aspekta Variable',
+ *     weight: '100 900'
+ *   }
+ * ])
+ * ```
+ *
+ * @example
+ *
+ * ```ts
+ * // Explicit import (optional)
+ * import { useFont } from '#font'
+ * ```
+ *
+ * @since 1.0.0
+ */
+export declare const useFont: (options: FontOptions[]) => any

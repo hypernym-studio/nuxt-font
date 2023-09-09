@@ -1,8 +1,5 @@
-/**
- * Module Options
- *
- * @since 1.0.0
- */
+import type { NuxtModule } from '@nuxt/schema'
+
 export interface ModuleOptions {
   /**
    * Specifies the built-in `auto-import` feature.
@@ -16,25 +13,6 @@ export interface ModuleOptions {
   autoImport?: boolean
 }
 
-declare module '@nuxt/schema' {
-  interface NuxtConfig {
-    /**
-     * Nuxt Font Module
-     *
-     * Auto-optimized font loader for Nuxt.
-     *
-     * @see [Repository](https://github.com/hypernym-studio/nuxt-font)
-     */
-    font?: ModuleOptions
-  }
-  interface NuxtOptions {
-    /**
-     * Nuxt Font Module
-     *
-     * Auto-optimized font loader for Nuxt.
-     *
-     * @see [Repository](https://github.com/hypernym-studio/nuxt-font)
-     */
-    font?: ModuleOptions
-  }
-}
+declare const module: NuxtModule<ModuleOptions>
+
+export { module as default }

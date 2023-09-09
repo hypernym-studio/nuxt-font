@@ -1,36 +1,6 @@
 import { useHead } from '#imports'
-import type { FontOptions } from '../../types'
+import type { FontOptions } from '../../types/runtime/composables'
 
-/**
- * Loads fonts from the same domain as your deployment.
- *
- * The function accepts an array of objects that specifies local font sources.
- *
- * Each object is treated as a separate block of rules.
- *
- * Also, the font composable is available globally after module activation, so there is no need for manual import.
- *
- * @example
- *
- * ```ts
- * useFont([
- *   {
- *     src: '/fonts/AspektaVF.woff2',
- *     family: 'Aspekta Variable',
- *     weight: '100 900'
- *   }
- * ])
- * ```
- *
- * @example
- *
- * ```ts
- * // Explicit import (optional)
- * import { useFont } from '#font'
- * ```
- *
- * @since 1.0.0
- */
 export const useFont = (options: FontOptions[]) => {
   const links: object[] = []
   let fontFace = ''
@@ -45,7 +15,7 @@ export const useFont = (options: FontOptions[]) => {
       fallback: ['sans-serif'],
       display: 'optional',
       style: 'normal',
-      ...option
+      ...option,
     }
     const {
       family,
@@ -57,7 +27,7 @@ export const useFont = (options: FontOptions[]) => {
       weight,
       style,
       display,
-      unicode
+      unicode,
     } = defaults
     let [, format] = src.split(/\.(?=[^.]+$)/)
 
@@ -71,7 +41,7 @@ export const useFont = (options: FontOptions[]) => {
           as: 'font',
           type: `font/${format}`,
           crossorigin: 'anonymous',
-          href: src
+          href: src,
         })
       }
     }
@@ -82,7 +52,7 @@ export const useFont = (options: FontOptions[]) => {
       `font-style:${style};`,
       `font-display:${display};`,
       `src:url('${src}') format('${format}');`,
-      unicode ? `unicode-range:${unicode};` : ''
+      unicode ? `unicode-range:${unicode};` : '',
     ].join('')
 
     fontFace += `@font-face{${faceRules}}`
@@ -96,6 +66,6 @@ export const useFont = (options: FontOptions[]) => {
 
   return useHead({
     link: links.length ? links : undefined,
-    style: [{ children: `${fontFace}${classes}${root}` }]
+    style: [{ children: `${fontFace}${classes}${root}` }],
   })
 }

@@ -1,21 +1,17 @@
 import { defineNuxtModule, createResolver, addImports } from '@nuxt/kit'
-import { name, version, configKey } from '../package.json'
-import type { ModuleOptions } from './types'
-
-export * from './types'
+import { name, version, configKey, compatibility } from './meta'
+import type { ModuleOptions } from './types/module'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version,
     configKey,
-    compatibility: {
-      nuxt: '>=3.0.0'
-    }
+    compatibility,
   },
 
   defaults: {
-    autoImport: true
+    autoImport: true,
   },
 
   setup(options, nuxt) {
@@ -25,8 +21,8 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.build.transpile.push(resolve('./runtime'))
 
     const composables = resolve('./runtime/composables')
-    nuxt.options.alias['#font'] = composables
+    nuxt.options.alias[`#${configKey}`] = composables
 
     if (autoImport) addImports([{ name: 'useFont', from: composables }])
-  }
+  },
 })
