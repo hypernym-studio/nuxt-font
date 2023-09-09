@@ -10,8 +10,8 @@ useFont([
   {
     src: '/fonts/AspektaVF.woff2',
     family: 'Aspekta Variable',
-    weight: '100 900'
-  }
+    weight: '100 900',
+  },
 ])
 </script>
 
