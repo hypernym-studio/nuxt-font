@@ -32,10 +32,9 @@
   ],
   "scripts": {
     "dev": "nuxt dev playground",
-    "build": "rolli && npm run generate:templates",
+    "build": "rolli",
     "build:play": "nuxt build playground",
     "generate:play": "nuxt generate playground",
-    "generate:templates": "vite-node src/utils/templates.ts",
     "preview:play": "nuxt preview playground",
     "bump": "bummp",
     "lint": "ESLINT_USE_FLAT_CONFIG=true eslint -c .config/eslint.config.js .",
@@ -50,7 +49,7 @@
     "eslint": "^8.49.0",
     "nuxt": "^3.7.1",
     "prettier": "^3.0.3",
-    "rolli": "^0.5.4",
+    "rolli": "^0.6.0",
     "typescript": "^5.1.6"
   }
 }
