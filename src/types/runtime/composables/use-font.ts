@@ -201,6 +201,6 @@ export interface FontOptions {
  * import { useFont } from '#font'
  * ```
  *
- * @since 1.0.0
+ * @see [Repository](https://github.com/hypernym-studio/nuxt-font)
  */
 export declare const useFont: (options: FontOptions[]) => any

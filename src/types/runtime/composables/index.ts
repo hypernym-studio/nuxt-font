@@ -1,1 +1,1 @@
-export * from './use-font'
+export * from './use-font.js'

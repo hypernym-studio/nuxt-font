@@ -1,5 +1,5 @@
 import { useHead } from '#imports'
-import type { FontOptions } from '../../types/runtime/composables'
+import type { FontOptions } from '../../types/runtime/composables/index.js'
 
 export const useFont = (options: FontOptions[]) => {
   const links: object[] = []
