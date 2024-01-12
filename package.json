@@ -32,24 +32,24 @@
   ],
   "scripts": {
     "dev": "nuxt dev playground",
-    "build": "rolli",
+    "build": "hyperbundler",
     "build:play": "nuxt build playground",
     "generate:play": "nuxt generate playground",
     "preview:play": "nuxt preview playground",
-    "bump": "bummp",
     "lint": "ESLINT_USE_FLAT_CONFIG=true eslint -c .config/eslint.config.js .",
     "lint:fix": "ESLINT_USE_FLAT_CONFIG=true eslint -c .config/eslint.config.js --fix .",
     "format": "prettier --config .config/prettier.config.js --write .",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@types/node": "^20.6.0",
-    "bummp": "^0.2.0",
-    "configshare": "^0.1.5",
-    "eslint": "^8.49.0",
-    "nuxt": "^3.7.1",
-    "prettier": "^3.0.3",
-    "rolli": "^0.6.0",
-    "typescript": "^5.1.6"
+    "@hypernym/bundler": "^0.6.3",
+    "@hypernym/eslint-config": "^2.0.3",
+    "@hypernym/prettier-config": "^2.0.3",
+    "@hypernym/tsconfig": "^1.1.0",
+    "@types/node": "^20.11.0",
+    "eslint": "^8.56.0",
+    "nuxt": "^3.9.1",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
   }
 }
